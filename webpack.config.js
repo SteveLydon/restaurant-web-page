@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -25,12 +26,11 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Project Title (Edit in Webpack config)',
-            template: './src/index.html',
-
+            template: './src/index.html'
         }),
-        
+
         // Plugin for hot module replacement
-        new webpack.HotModuleReplacementPlugin(),
+        new webpack.HotModuleReplacementPlugin()
     ],
     output: {
         filename: '[name].js',
