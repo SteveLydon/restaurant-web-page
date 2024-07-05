@@ -1,2 +1,2 @@
-# webpack-project-template
-template repo for standard webpack projects
+# odin restaurant page
+Practice using modules and DOM manipulation while making SPA.
