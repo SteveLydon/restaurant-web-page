@@ -3,20 +3,37 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'development',
-    entry: './src/index.js',
+    entry: {
+        app: './src/index.js',
+
+        // Runtime code for hot module replacement
+        hot: 'webpack/hot/dev-server.js',
+
+        // Dev server client for web socket transport, hot and live reload logic
+        client: 'webpack-dev-server/client/index.js?hot=true&live-reload=true',
+    },
 
     devtool: 'inline-source-map',
     devServer: {
+        watchFiles: ["src/*.html"],
         static:'./dist',
+        // Dev server client for web socket transport, hot and live reload logic
+        hot: false,
+        client: false,
     },
 
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Project Title (Edit in Webpack config)'
+            title: 'Project Title (Edit in Webpack config)',
+            template: './src/index.html',
+
         }),
+        
+        // Plugin for hot module replacement
+        new webpack.HotModuleReplacementPlugin(),
     ],
     output: {
-        filename: 'bundle.js',
+        filename: '[name].js',
         path: path.resolve(__dirname, 'dist'),
         clean:true,
     },
